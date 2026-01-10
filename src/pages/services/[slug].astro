@@ -54,8 +54,8 @@ const faqSchema = {
   description={service.description}
 >
   <Fragment slot="head">
-    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
-    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </Fragment>
 
   <!-- Hero Section -->
