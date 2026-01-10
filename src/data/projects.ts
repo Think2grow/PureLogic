@@ -19,6 +19,9 @@ export interface Project {
     text: string;
     author: string;
     role: string;
+    location: string;
+    projectType: string;
+    rating: number;
   };
 }
 
@@ -54,7 +57,10 @@ export const projects: Project[] = [
     testimonial: {
       text: "PureLogic transformed our dark, cramped kitchen into the heart of our home. The team was professional, communicative, and incredibly detail-oriented. They finished on time and handled every surprise with expertise. We couldn't be happier!",
       author: "Jennifer & Mark T.",
-      role: "Homeowners"
+      role: "Homeowners",
+      location: "Draper, UT",
+      projectType: "Kitchen Remodel",
+      rating: 5
     }
   },
   {
@@ -87,7 +93,10 @@ export const projects: Project[] = [
     testimonial: {
       text: "Our primary bathroom went from boring to breathtaking. The attention to detail in the tile work is exceptional, and the heated floors are a game-changer on cold Utah mornings. Worth every penny!",
       author: "Rachel K.",
-      role: "Homeowner"
+      role: "Homeowner",
+      location: "South Jordan, UT",
+      projectType: "Bathroom Remodel",
+      rating: 5
     }
   },
   {
@@ -120,7 +129,10 @@ export const projects: Project[] = [
     testimonial: {
       text: "PureLogic made our dream of staying in our neighborhood come true. The addition blends perfectly with our home—guests can't tell what's new. The team managed everything professionally, and we were able to stay in our home throughout construction.",
       author: "David & Sarah M.",
-      role: "Homeowners"
+      role: "Homeowners",
+      location: "Lehi, UT",
+      projectType: "Home Addition",
+      rating: 5
     }
   },
   {
@@ -149,7 +161,10 @@ export const projects: Project[] = [
     ],
     problem: "The unfinished basement was wasted space storing boxes. With aging parents planning to visit for extended stays, the homeowners needed comfortable, private accommodations plus entertainment space for the whole family.",
     solution: "We transformed the dark basement into a bright, welcoming living suite. A spacious bedroom with proper egress, a beautiful full bathroom, and an open family room with wet bar created the perfect setup for guests and family gatherings.",
-    testimonial: {
+    testimonial: {,
+      location: "Sandy, UT",
+      projectType: "Basement Finish",
+      rating: 5
       text: "Our basement went from a scary storage dungeon to our favorite part of the house. The quality of work is outstanding, and the space has already paid for itself in family memories. My parents love staying here now!",
       author: "Amanda L.",
       role: "Homeowner"
@@ -185,7 +200,10 @@ export const projects: Project[] = [
     ],
     problem: "After years of searching, the clients couldn't find an existing home that met their needs for space, style, and location. They wanted a modern home that fit the mountain setting and their active lifestyle.",
     solution: "Working closely with their architect, we built a stunning custom home that maximizes views, natural light, and livability. Clean lines, natural materials, and thoughtful details created their dream home. The open floor plan and outdoor connections perfectly suit their lifestyle.",
-    testimonial: {
+    testimonial: {,
+      location: "Alpine, UT",
+      projectType: "Custom Home",
+      rating: 5
       text: "Building a custom home felt overwhelming at first, but PureLogic made it an enjoyable journey. Their communication was excellent, their craftsmanship is impeccable, and they helped us navigate every decision. We're in love with our home!",
       author: "Michael & Lisa P.",
       role: "Homeowners"
@@ -217,7 +235,10 @@ export const projects: Project[] = [
     ],
     problem: "The 1960s home had great bones and a prime location but was completely outdated. Every surface needed attention, and systems were aging. The buyers wanted to honor the mid-century character while modernizing for today's living.",
     solution: "We updated every aspect while preserving the home's mid-century charm. Clean lines, period-appropriate details, and modern functionality came together beautifully. The result is a home that feels authentically vintage yet completely current.",
-    testimonial: {
+    testimonial: {,
+      location: "Orem, UT",
+      projectType: "Whole Home Remodel",
+      rating: 5
       text: "PureLogic understood our vision immediately. They respected the home's history while making it functional and beautiful for our young family. The project was complex, but they managed it flawlessly.",
       author: "Chris & Emma W.",
       role: "Homeowners"
