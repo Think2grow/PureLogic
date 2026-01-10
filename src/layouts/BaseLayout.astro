@@ -99,8 +99,12 @@ const organizationSchema = {
     <meta name="twitter:image" content={ogImageURL} />
     
     <!-- Structured Data -->
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    <script is:inline type="application/ld+json">
+      {JSON.stringify(localBusinessSchema)}
+    </script>
+    <script is:inline type="application/ld+json">
+      {JSON.stringify(organizationSchema)}
+    </script>
     
     <!-- Prefetch -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
