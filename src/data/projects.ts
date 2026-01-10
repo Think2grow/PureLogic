@@ -169,7 +169,6 @@ export const projects: Project[] = [
       projectType: "Basement Finish",
       rating: 5
     }
-    }
   },
   {
     slug: "alpine-custom-home",
