@@ -161,13 +161,14 @@ export const projects: Project[] = [
     ],
     problem: "The unfinished basement was wasted space storing boxes. With aging parents planning to visit for extended stays, the homeowners needed comfortable, private accommodations plus entertainment space for the whole family.",
     solution: "We transformed the dark basement into a bright, welcoming living suite. A spacious bedroom with proper egress, a beautiful full bathroom, and an open family room with wet bar created the perfect setup for guests and family gatherings.",
-    testimonial: {,
+    testimonial: {
+      text: "Our basement went from a scary storage dungeon to our favorite part of the house. The quality of work is outstanding, and the space has already paid for itself in family memories. My parents love staying here now!",
+      author: "Amanda L.",
+      role: "Homeowner",
       location: "Sandy, UT",
       projectType: "Basement Finish",
       rating: 5
-      text: "Our basement went from a scary storage dungeon to our favorite part of the house. The quality of work is outstanding, and the space has already paid for itself in family memories. My parents love staying here now!",
-      author: "Amanda L.",
-      role: "Homeowner"
+    }
     }
   },
   {
