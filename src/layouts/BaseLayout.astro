@@ -1,0 +1,115 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  ogType?: string;
+  noindex?: boolean;
+}
+
+import { siteConfig } from '@/config/site';
+import '@/styles/global.css';
+
+const { 
+  title, 
+  description = siteConfig.seo.description,
+  ogImage = siteConfig.seo.ogImage,
+  ogType = 'website',
+  noindex = false
+} = Astro.props;
+
+const fullTitle = title === siteConfig.businessName 
+  ? title 
+  : siteConfig.seo.titleTemplate.replace('%s', title);
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(ogImage, Astro.site);
+
+// Schema.org structured data for LocalBusiness
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "GeneralContractor",
+  "name": siteConfig.businessName,
+  "description": siteConfig.tagline,
+  "url": Astro.site,
+  "telephone": siteConfig.phone,
+  "email": siteConfig.email,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": siteConfig.address.street,
+    "addressLocality": siteConfig.address.city,
+    "addressRegion": siteConfig.address.state,
+    "postalCode": siteConfig.address.zip,
+    "addressCountry": "US"
+  },
+  "areaServed": siteConfig.serviceAreas.map(area => ({
+    "@type": "City",
+    "name": area
+  })),
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": siteConfig.googleRating,
+    "reviewCount": siteConfig.reviewCount
+  },
+  "priceRange": "$$-$$$"
+};
+
+// Organization schema
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": siteConfig.businessName,
+  "url": Astro.site,
+  "logo": new URL('/logo.png', Astro.site).toString(),
+  "sameAs": [
+    siteConfig.social.facebook,
+    siteConfig.social.instagram,
+    siteConfig.social.linkedin
+  ]
+};
+---
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- SEO Meta Tags -->
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:site_name" content={siteConfig.businessName} />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    
+    <!-- Prefetch -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-to-main">
+      Skip to main content
+    </a>
+    
+    <slot />
+  </body>
+</html>

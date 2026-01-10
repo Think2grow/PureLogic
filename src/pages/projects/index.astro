@@ -1,0 +1,68 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import ProjectCard from '@/components/ProjectCard.astro';
+import Button from '@/components/Button.astro';
+import { projects } from '@/data/projects';
+
+const categories = Array.from(new Set(projects.map(p => p.category)));
+---
+
+<MainLayout 
+  title="Our Projects"
+  description="Browse our portfolio of completed kitchen remodels, bathroom renovations, home additions, and custom builds across Utah. See our craftsmanship in action."
+>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-brand-dark to-brand-base text-white py-16 lg:py-24">
+    <div class="container-custom">
+      <div class="max-w-3xl">
+        <h1 class="heading-xl mb-6">Our Work</h1>
+        <p class="text-xl text-gray-100 leading-relaxed">
+          Explore our portfolio of completed projects across Utah. Each project showcases our 
+          commitment to quality craftsmanship, attention to detail, and client satisfaction.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Category Filter (Placeholder for future enhancement) -->
+  <section class="bg-gray-50 dark:bg-gray-800 py-6 border-b border-gray-200 dark:border-gray-700">
+    <div class="container-custom">
+      <div class="flex flex-wrap gap-3">
+        <button class="px-4 py-2 bg-brand-base text-white rounded-lg font-medium">
+          All Projects
+        </button>
+        {categories.map((category) => (
+          <button class="px-4 py-2 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
+            {category}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Grid -->
+  <section class="section-padding bg-white dark:bg-gray-900">
+    <div class="container-custom">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {projects.map((project) => (
+          <ProjectCard project={project} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section-padding bg-brand-base text-white">
+    <div class="container-custom">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="heading-lg mb-6">Start Your Own Project</h2>
+        <p class="text-xl mb-8 text-gray-100">
+          Ready to transform your home? Let's discuss your vision and create a plan to bring it to life.
+        </p>
+        <Button href="/contact" variant="primary" size="lg">
+          Get a Free Estimate
+        </Button>
+      </div>
+    </div>
+  </section>
+</MainLayout>

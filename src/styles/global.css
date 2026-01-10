@@ -1,0 +1,114 @@
+@import '@fontsource-variable/manrope';
+@import 'tailwindcss';
+
+@theme {
+  /* Brand Colors */
+  --color-brand-base: #1e3a8a; /* Deep professional blue */
+  --color-brand-dark: #1e293b;
+  --color-brand-light: #3b82f6;
+  
+  /* Extended brand palette */
+  --color-accent: #f59e0b; /* Warm accent for CTAs */
+  --color-accent-dark: #d97706;
+  
+  /* Font Family */
+  --font-sans: 'Manrope Variable', system-ui, -apple-system, sans-serif;
+  
+  /* Extended spacing */
+  --spacing-18: 4.5rem;
+  --spacing-22: 5.5rem;
+  --spacing-26: 6.5rem;
+  
+  /* Extended border radius */
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  
+  /* Box shadows */
+  --shadow-brand: 0 4px 6px -1px rgb(30 58 138 / 0.1), 0 2px 4px -2px rgb(30 58 138 / 0.1);
+  --shadow-brand-lg: 0 10px 15px -3px rgb(30 58 138 / 0.1), 0 4px 6px -4px rgb(30 58 138 / 0.1);
+}
+
+/* Base styles */
+* {
+  @apply antialiased;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+  font-family: var(--font-sans);
+}
+
+/* Focus visible styles for accessibility */
+:focus-visible {
+  @apply outline-2 outline-offset-2 outline-blue-600;
+}
+
+/* Skip to main content link */
+.skip-to-main {
+  @apply absolute -top-full left-0 z-50 bg-brand-base text-white px-4 py-2 transition-all;
+}
+
+.skip-to-main:focus {
+  @apply top-0;
+}
+
+/* Utility classes */
+.container-custom {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.section-padding {
+  @apply py-16 lg:py-24;
+}
+
+.heading-xl {
+  @apply text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight;
+}
+
+.heading-lg {
+  @apply text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight;
+}
+
+.heading-md {
+  @apply text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight;
+}
+
+.heading-sm {
+  @apply text-xl sm:text-2xl font-semibold;
+}
+
+/* Button base styles */
+.btn {
+  @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
+}
+
+.btn-primary {
+  @apply bg-accent hover:bg-accent-dark text-white shadow-lg hover:shadow-xl focus-visible:outline-accent;
+}
+
+.btn-secondary {
+  @apply bg-brand-base hover:bg-brand-dark text-white shadow-md hover:shadow-lg focus-visible:outline-brand-base;
+}
+
+.btn-outline {
+  @apply border-2 border-gray-300 dark:border-gray-600 hover:border-brand-base dark:hover:border-brand-light hover:bg-brand-base/5 dark:hover:bg-brand-light/10 focus-visible:outline-brand-base;
+}

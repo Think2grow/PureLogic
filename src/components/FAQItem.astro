@@ -1,0 +1,74 @@
+---
+interface Props {
+  question: string;
+  answer: string;
+  id: string;
+}
+
+const { question, answer, id } = Astro.props;
+---
+
+<div class="faq-item border-b border-gray-200 dark:border-gray-700">
+  <button
+    type="button"
+    class="faq-button w-full text-left py-5 flex items-center justify-between gap-4 hover:text-brand-base dark:hover:text-brand-light transition-colors"
+    aria-expanded="false"
+    aria-controls={`faq-answer-${id}`}
+  >
+    <span class="font-semibold text-lg">{question}</span>
+    <svg 
+      class="faq-icon w-5 h-5 flex-shrink-0 transition-transform duration-200" 
+      fill="none" 
+      stroke="currentColor" 
+      viewBox="0 0 24 24"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    </svg>
+  </button>
+  <div
+    id={`faq-answer-${id}`}
+    class="faq-answer overflow-hidden transition-all duration-200 max-h-0"
+    role="region"
+  >
+    <div class="pb-5 text-gray-600 dark:text-gray-300 leading-relaxed">
+      {answer}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.faq-button').forEach((button) => {
+    button.addEventListener('click', () => {
+      const expanded = button.getAttribute('aria-expanded') === 'true';
+      const answerId = button.getAttribute('aria-controls');
+      const answer = document.getElementById(answerId!);
+      const icon = button.querySelector('.faq-icon');
+      
+      // Close all other FAQs
+      document.querySelectorAll('.faq-button').forEach((otherButton) => {
+        if (otherButton !== button) {
+          otherButton.setAttribute('aria-expanded', 'false');
+          const otherAnswerId = otherButton.getAttribute('aria-controls');
+          const otherAnswer = document.getElementById(otherAnswerId!);
+          const otherIcon = otherButton.querySelector('.faq-icon');
+          otherAnswer?.classList.remove('max-h-96');
+          otherAnswer?.classList.add('max-h-0');
+          otherIcon?.classList.remove('rotate-180');
+        }
+      });
+      
+      // Toggle current FAQ
+      button.setAttribute('aria-expanded', (!expanded).toString());
+      
+      if (!expanded) {
+        answer?.classList.remove('max-h-0');
+        answer?.classList.add('max-h-96');
+        icon?.classList.add('rotate-180');
+      } else {
+        answer?.classList.remove('max-h-96');
+        answer?.classList.add('max-h-0');
+        icon?.classList.remove('rotate-180');
+      }
+    });
+  });
+</script>

@@ -1,0 +1,262 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import Button from '@/components/Button.astro';
+import TrustBar from '@/components/TrustBar.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import ProjectCard from '@/components/ProjectCard.astro';
+import TestimonialCard from '@/components/TestimonialCard.astro';
+import FAQItem from '@/components/FAQItem.astro';
+import ScrollReveal from '@/components/ScrollReveal';
+import { siteConfig } from '@/config/site';
+import { services } from '@/data/services';
+import { projects } from '@/data/projects';
+import { testimonials, faqs } from '@/data/testimonials';
+
+const featuredServices = services.filter(s => s.featured).slice(0, 6);
+const featuredProjects = projects.filter(p => p.featured).slice(0, 6);
+const homeFaqs = faqs.filter(f => f.category === 'General' || f.category === 'Process').slice(0, 6);
+---
+
+<MainLayout 
+  title={siteConfig.businessName}
+  description={siteConfig.seo.description}
+>
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-br from-brand-dark via-brand-base to-brand-dark text-white section-padding">
+    <div class="absolute inset-0 bg-black/20"></div>
+    <div class="container-custom relative z-10">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="heading-xl mb-6">
+          Premium General Contractor in Utah
+        </h1>
+        <p class="text-xl md:text-2xl mb-8 text-gray-100 leading-relaxed">
+          Expert kitchen remodels, bathroom renovations, home additions, and custom builds. 
+          Trusted by Utah families for over a decade.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <Button href="/contact" variant="primary" size="lg">
+            Get a Free Estimate
+          </Button>
+          <Button href={`tel:${siteConfig.phone.replace(/\D/g, '')}`} variant="outline" size="lg" class="text-white border-white hover:bg-white/10">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            Call/Text {siteConfig.phone}
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Bar -->
+  <TrustBar />
+
+  <!-- Featured Services -->
+  <section class="section-padding bg-white dark:bg-gray-900">
+    <div class="container-custom">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="heading-lg mb-4">Our Services</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300">
+          From kitchens and bathrooms to whole-home remodels and custom builds, 
+          we deliver exceptional craftsmanship on every project.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {featuredServices.map((service) => (
+          <ServiceCard service={service} />
+        ))}
+      </div>
+
+      <div class="text-center mt-12">
+        <Button href="/services" variant="outline">
+          View All Services
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects -->
+  <section class="section-padding bg-gray-50 dark:bg-gray-800">
+    <div class="container-custom">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="heading-lg mb-4">Recent Projects</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300">
+          See how we've transformed homes across Utah with quality craftsmanship and attention to detail.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {featuredProjects.map((project) => (
+          <ProjectCard project={project} />
+        ))}
+      </div>
+
+      <div class="text-center mt-12">
+        <Button href="/projects" variant="outline">
+          View All Projects
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Process -->
+  <section class="section-padding bg-white dark:bg-gray-900">
+    <div class="container-custom">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="heading-lg mb-4">Our Process</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300">
+          We've refined our process to ensure clear communication, quality workmanship, 
+          and results that exceed expectations.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+        <!-- Step 1 -->
+        <div class="text-center">
+          <div class="w-16 h-16 bg-brand-base/10 dark:bg-brand-light/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-2xl font-bold text-brand-base dark:text-brand-light">1</span>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Discovery & Design</h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            We start with a detailed consultation to understand your vision, needs, and budget. 
+            Together we'll plan your project and create a clear scope of work.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="text-center">
+          <div class="w-16 h-16 bg-brand-base/10 dark:bg-brand-light/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-2xl font-bold text-brand-base dark:text-brand-light">2</span>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Build & Communicate</h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            Our skilled team brings your project to life with expert craftsmanship. 
+            We provide regular updates and maintain clear communication throughout.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="text-center">
+          <div class="w-16 h-16 bg-brand-base/10 dark:bg-brand-light/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-2xl font-bold text-brand-base dark:text-brand-light">3</span>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Closeout & Warranty</h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            We complete a thorough walkthrough together, address any final details, 
+            and provide warranty documentation for your peace of mind.
+          </p>
+        </div>
+      </div>
+
+      <div class="text-center mt-12">
+        <Button href="/process" variant="outline">
+          Learn More About Our Process
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section-padding bg-gray-50 dark:bg-gray-800">
+    <div class="container-custom">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="heading-lg mb-4">What Our Clients Say</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300">
+          Don't just take our word for it. Here's what Utah homeowners say about working with us.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {testimonials.slice(0, 6).map((testimonial) => (
+          <TestimonialCard testimonial={testimonial} />
+        ))}
+      </div>
+
+      <div class="text-center mt-12">
+        <Button href="/reviews" variant="outline">
+          Read More Reviews
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Areas -->
+  <section class="section-padding bg-white dark:bg-gray-900">
+    <div class="container-custom">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="heading-lg mb-4">Serving Communities Across Utah</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300">
+          Proudly serving homeowners throughout Salt Lake County, Utah County, and surrounding areas.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+        {siteConfig.serviceAreas.slice(0, 12).map((area) => (
+          <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+            <span class="font-medium text-gray-900 dark:text-gray-100">{area}</span>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center mt-8">
+        <Button href="/areas" variant="outline">
+          View All Service Areas
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faqs" class="section-padding bg-gray-50 dark:bg-gray-800">
+    <div class="container-custom">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="heading-lg mb-4">Frequently Asked Questions</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300">
+          Get answers to common questions about our remodeling and construction services.
+        </p>
+      </div>
+
+      <div class="max-w-3xl mx-auto">
+        {homeFaqs.map((faq, index) => (
+          <FAQItem 
+            question={faq.question} 
+            answer={faq.answer} 
+            id={`home-${index}`} 
+          />
+        ))}
+      </div>
+
+      <div class="text-center mt-8">
+        <p class="text-gray-600 dark:text-gray-300">
+          Have more questions?{' '}
+          <a href="/contact" class="text-brand-base dark:text-brand-light hover:underline font-semibold">
+            Contact us
+          </a>
+          {' '}and we'll be happy to help.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="section-padding bg-brand-base text-white">
+    <div class="container-custom">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="heading-lg mb-6">Ready to Start Your Project?</h2>
+        <p class="text-xl mb-8 text-gray-100">
+          Let's discuss your vision and create a plan to bring it to life. 
+          Get a detailed estimate with no obligation.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button href="/contact" variant="primary" size="lg">
+            Get a Free Estimate
+          </Button>
+          <Button href={`tel:${siteConfig.phone.replace(/\D/g, '')}`} variant="outline" size="lg" class="text-white border-white hover:bg-white/10">
+            Call {siteConfig.phone}
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>

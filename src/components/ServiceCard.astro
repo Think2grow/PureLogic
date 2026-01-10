@@ -1,0 +1,37 @@
+---
+import type { Service } from '@/data/services';
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+---
+
+<a 
+  href={`/services/${service.slug}`}
+  class="group block bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
+>
+  <div class="p-6 lg:p-8">
+    <!-- Icon -->
+    <div class="text-4xl mb-4">{service.icon}</div>
+    
+    <!-- Title -->
+    <h3 class="text-xl font-bold mb-3 group-hover:text-brand-base dark:group-hover:text-brand-light transition-colors">
+      {service.title}
+    </h3>
+    
+    <!-- Description -->
+    <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+      {service.shortDescription}
+    </p>
+    
+    <!-- Learn More Link -->
+    <div class="flex items-center text-brand-base dark:text-brand-light font-semibold group-hover:translate-x-1 transition-transform">
+      Learn More
+      <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </div>
+  </div>
+</a>

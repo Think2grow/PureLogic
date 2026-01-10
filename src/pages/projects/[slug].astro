@@ -1,0 +1,200 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import Button from '@/components/Button.astro';
+import TestimonialCard from '@/components/TestimonialCard.astro';
+import { projects } from '@/data/projects';
+
+export async function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project }
+  }));
+}
+
+const { slug } = Astro.params;
+const project = projects.find(p => p.slug === slug);
+
+if (!project) {
+  return Astro.redirect('/404');
+}
+---
+
+<MainLayout 
+  title={project.title}
+  description={`${project.category} project in ${project.location}. ${project.problem}`}
+>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-brand-dark to-brand-base text-white py-16 lg:py-24">
+    <div class="container-custom">
+      <div class="max-w-4xl">
+        <!-- Category Badge -->
+        <div class="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm text-white text-sm font-semibold rounded-full mb-4">
+          {project.category}
+        </div>
+        
+        <h1 class="heading-xl mb-6">{project.title}</h1>
+        
+        <div class="flex flex-wrap gap-6 text-lg">
+          <div class="flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            {project.location}
+          </div>
+          <div class="flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            Completed {new Date(project.completionDate).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+          </div>
+          <div class="flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            {project.timeline}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Details -->
+  <section class="section-padding bg-white dark:bg-gray-900">
+    <div class="container-custom">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <!-- Main Content -->
+        <div class="lg:col-span-2 space-y-12">
+          <!-- Photo Gallery -->
+          <div>
+            <h2 class="heading-md mb-6">Project Gallery</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {project.images.map((_, index) => (
+                <div class="aspect-video bg-gray-200 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+                  <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- The Challenge -->
+          <div>
+            <h2 class="heading-md mb-4">The Challenge</h2>
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
+              {project.problem}
+            </p>
+          </div>
+
+          <!-- The Solution -->
+          <div>
+            <h2 class="heading-md mb-4">Our Solution</h2>
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
+              {project.solution}
+            </p>
+          </div>
+
+          <!-- Scope of Work -->
+          <div>
+            <h2 class="heading-md mb-6">Scope of Work</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {project.scope.map((item) => (
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 text-green-600 dark:text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                  </svg>
+                  <span class="text-gray-700 dark:text-gray-300">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Client Testimonial -->
+          <div>
+            <h2 class="heading-md mb-6">What the Client Says</h2>
+            <TestimonialCard testimonial={project.testimonial} />
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="lg:col-span-1">
+          <div class="sticky top-24 space-y-6">
+            <!-- Project Info Card -->
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <h3 class="font-bold text-lg mb-4">Project Details</h3>
+              
+              <div class="space-y-4">
+                <div>
+                  <div class="text-sm text-gray-600 dark:text-gray-400 mb-1">Budget Range</div>
+                  <div class="font-semibold text-lg">
+                    ${project.budget.min.toLocaleString()} - ${project.budget.max.toLocaleString()}
+                  </div>
+                </div>
+                
+                <div>
+                  <div class="text-sm text-gray-600 dark:text-gray-400 mb-1">Timeline</div>
+                  <div class="font-semibold">{project.timeline}</div>
+                </div>
+                
+                <div>
+                  <div class="text-sm text-gray-600 dark:text-gray-400 mb-1">Location</div>
+                  <div class="font-semibold">{project.location}</div>
+                </div>
+                
+                <div>
+                  <div class="text-sm text-gray-600 dark:text-gray-400 mb-1">Completed</div>
+                  <div class="font-semibold">
+                    {new Date(project.completionDate).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CTA Card -->
+            <div class="bg-brand-base text-white rounded-xl p-6">
+              <h3 class="font-bold text-xl mb-3">Like What You See?</h3>
+              <p class="text-gray-100 mb-6">
+                Let's discuss how we can transform your space with the same level of quality and attention to detail.
+              </p>
+              <Button href="/contact" variant="primary" class="w-full bg-accent hover:bg-accent-dark">
+                Get Your Free Estimate
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Projects -->
+  <section class="section-padding bg-gray-50 dark:bg-gray-800">
+    <div class="container-custom">
+      <h2 class="heading-md mb-8 text-center">More Projects Like This</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {projects
+          .filter(p => p.category === project.category && p.slug !== project.slug)
+          .slice(0, 3)
+          .map((relatedProject) => (
+            <div class="bg-white dark:bg-gray-900 rounded-xl shadow-md overflow-hidden">
+              <div class="aspect-video bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <div class="p-6">
+                <div class="text-sm text-brand-base dark:text-brand-light font-semibold mb-2">
+                  {relatedProject.category}
+                </div>
+                <h3 class="font-bold text-lg mb-2">{relatedProject.title}</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">{relatedProject.location}</p>
+                <Button href={`/projects/${relatedProject.slug}`} variant="outline" size="sm" class="w-full">
+                  View Project
+                </Button>
+              </div>
+            </div>
+          ))}
+      </div>
+    </div>
+  </section>
+</MainLayout>

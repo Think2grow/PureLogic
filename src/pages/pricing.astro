@@ -1,0 +1,211 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import Button from '@/components/Button.astro';
+import FAQItem from '@/components/FAQItem.astro';
+import { serviceDetails } from '@/data/services';
+import { faqs } from '@/data/testimonials';
+
+// Extract some typical cost data
+const pricingExamples = [
+  {
+    service: 'Kitchen Remodel',
+    ranges: [
+      { level: 'Minor Update', min: 15000, max: 30000, description: 'Paint, new hardware, light fixtures, minor cosmetic updates' },
+      { level: 'Mid-Range Remodel', min: 35000, max: 65000, description: 'New cabinets, countertops, appliances, flooring, backsplash' },
+      { level: 'High-End Remodel', min: 65000, max: 120000, description: 'Custom cabinetry, premium materials, layout changes, top appliances' }
+    ]
+  },
+  {
+    service: 'Bathroom Remodel',
+    ranges: [
+      { level: 'Refresh', min: 8000, max: 15000, description: 'New fixtures, paint, vanity, basic tile work' },
+      { level: 'Full Remodel', min: 20000, max: 35000, description: 'Tile shower, new tub, vanity, flooring, lighting' },
+      { level: 'Luxury Spa Bath', min: 40000, max: 70000, description: 'Frameless shower, soaking tub, heated floors, premium finishes' }
+    ]
+  },
+  {
+    service: 'Home Addition',
+    ranges: [
+      { level: 'Small Addition', min: 50000, max: 100000, description: '200-400 sq ft, single-story bump-out or sunroom' },
+      { level: 'Medium Addition', min: 100000, max: 200000, description: '400-800 sq ft, second story or major main floor expansion' },
+      { level: 'Large Addition', min: 200000, max: 400000, description: '800+ sq ft, multiple rooms, complex integration' }
+    ]
+  }
+];
+
+const costFactors = [
+  'Size and scope of project',
+  'Quality level of materials and finishes',
+  'Structural changes or engineering requirements',
+  'Permit and inspection fees',
+  'Labor and subcontractor costs',
+  'Unexpected conditions (water damage, outdated wiring, etc.)',
+  'Timeline and scheduling constraints',
+  'Site access and working conditions'
+];
+
+const costFaqs = faqs.filter(f => f.category === 'Cost');
+---
+
+<MainLayout 
+  title="Pricing & Cost Guide"
+  description="Transparent pricing information for kitchen remodels, bathroom renovations, home additions, and more. Learn what drives costs and get typical project ranges for Utah."
+>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-brand-dark to-brand-base text-white py-16 lg:py-24">
+    <div class="container-custom">
+      <div class="max-w-3xl">
+        <h1 class="heading-xl mb-6">Pricing & Cost Guide</h1>
+        <p class="text-xl text-gray-100 leading-relaxed">
+          Honest, transparent information about what remodeling and construction projects 
+          typically cost in Utah. Every project is unique—these ranges help you plan.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Important Note -->
+  <section class="bg-yellow-50 dark:bg-yellow-900/20 border-y border-yellow-200 dark:border-yellow-800 py-8">
+    <div class="container-custom max-w-4xl">
+      <div class="flex items-start">
+        <svg class="w-6 h-6 text-yellow-600 dark:text-yellow-500 mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+        </svg>
+        <div>
+          <h3 class="font-semibold text-lg mb-2 text-gray-900 dark:text-white">Important: Every Project is Unique</h3>
+          <p class="text-gray-700 dark:text-gray-300">
+            These cost ranges are general guidelines based on typical projects in Utah. Your actual 
+            cost will depend on your specific needs, selections, site conditions, and scope. The best 
+            way to get an accurate estimate is to <a href="/contact" class="text-brand-base dark:text-brand-light hover:underline font-semibold">schedule a consultation</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Typical Project Costs -->
+  <section class="section-padding bg-white dark:bg-gray-900">
+    <div class="container-custom max-w-5xl">
+      <h2 class="heading-lg mb-12 text-center">Typical Project Costs</h2>
+      
+      <div class="space-y-12">
+        {pricingExamples.map((category) => (
+          <div>
+            <h3 class="heading-md mb-6">{category.service}</h3>
+            <div class="space-y-4">
+              {category.ranges.map((range) => (
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+                  <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
+                    <h4 class="font-bold text-lg mb-2 md:mb-0">{range.level}</h4>
+                    <div class="text-2xl font-bold text-brand-base dark:text-brand-light">
+                      ${range.min.toLocaleString()} - ${range.max.toLocaleString()}
+                    </div>
+                  </div>
+                  <p class="text-gray-600 dark:text-gray-300">{range.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+
+        <!-- Basement Finishing -->
+        <div>
+          <h3 class="heading-md mb-6">Basement Finishing</h3>
+          <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
+              <h4 class="font-bold text-lg mb-2 md:mb-0">Full Basement Finish</h4>
+              <div class="text-2xl font-bold text-brand-base dark:text-brand-light">
+                $60 - $100 per sq ft
+              </div>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300">
+              Typical 1,000 sq ft basement: $60,000-$100,000. Includes framing, drywall, flooring, 
+              lighting, bathroom addition, egress windows, and finishes.
+            </p>
+          </div>
+        </div>
+
+        <!-- Custom Homes -->
+        <div>
+          <h3 class="heading-md mb-6">Custom Home Construction</h3>
+          <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
+              <h4 class="font-bold text-lg mb-2 md:mb-0">Custom Homes</h4>
+              <div class="text-2xl font-bold text-brand-base dark:text-brand-light">
+                $200 - $350+ per sq ft
+              </div>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300">
+              Cost varies significantly based on finishes, lot conditions, design complexity, and 
+              location. Site costs (lot, utilities, grading) are additional.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What Drives Cost -->
+  <section class="section-padding bg-gray-50 dark:bg-gray-800">
+    <div class="container-custom max-w-4xl">
+      <h2 class="heading-lg mb-8 text-center">What Affects Your Project Cost?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {costFactors.map((factor) => (
+          <div class="flex items-start">
+            <svg class="w-5 h-5 text-brand-base dark:text-brand-light mr-3 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span class="text-gray-700 dark:text-gray-300">{factor}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Financing Info (optional, only if enabled) -->
+  <section class="section-padding bg-white dark:bg-gray-900">
+    <div class="container-custom max-w-4xl text-center">
+      <h2 class="heading-lg mb-6">Financing Options Available</h2>
+      <p class="text-lg text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
+        We work with several reputable lenders who specialize in home improvement financing. 
+        We're happy to provide referrals and information to help you explore financing options 
+        that fit your budget and timeline.
+      </p>
+      <Button href="/contact" variant="outline">
+        Ask About Financing
+      </Button>
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  <section class="section-padding bg-gray-50 dark:bg-gray-800">
+    <div class="container-custom">
+      <h2 class="heading-lg mb-12 text-center">Pricing FAQs</h2>
+      <div class="max-w-3xl mx-auto">
+        {costFaqs.map((faq, index) => (
+          <FAQItem 
+            question={faq.question} 
+            answer={faq.answer} 
+            id={`pricing-${index}`} 
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section-padding bg-brand-base text-white">
+    <div class="container-custom">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="heading-lg mb-6">Get an Accurate Estimate for Your Project</h2>
+        <p class="text-xl mb-8 text-gray-100">
+          The best way to understand your project cost is to schedule a free consultation. 
+          We'll visit your home, discuss your goals, and provide a detailed, transparent estimate.
+        </p>
+        <Button href="/contact" variant="primary" size="lg">
+          Request Your Free Estimate
+        </Button>
+      </div>
+    </div>
+  </section>
+</MainLayout>

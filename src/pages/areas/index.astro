@@ -1,0 +1,142 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import Button from '@/components/Button.astro';
+import { siteConfig } from '@/config/site';
+
+const serviceAreas = siteConfig.serviceAreas;
+const counties = ['Salt Lake County', 'Utah County', 'Davis County', 'Weber County'];
+const cities = serviceAreas.filter(area => !area.includes('County'));
+---
+
+<MainLayout 
+  title="Service Areas"
+  description="PureLogic Construction serves homeowners throughout Salt Lake County, Utah County, and surrounding communities. See if we serve your area."
+>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-brand-dark to-brand-base text-white py-16 lg:py-24">
+    <div class="container-custom">
+      <div class="max-w-3xl">
+        <h1 class="heading-xl mb-6">Where We Work</h1>
+        <p class="text-xl text-gray-100 leading-relaxed">
+          Proudly serving homeowners throughout the Wasatch Front with expert remodeling 
+          and construction services.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Primary Service Areas -->
+  <section class="section-padding bg-white dark:bg-gray-900">
+    <div class="container-custom max-w-5xl">
+      <h2 class="heading-lg mb-12 text-center">Counties We Serve</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {counties.map((county) => (
+          <div class="bg-brand-base/5 dark:bg-brand-light/5 border-2 border-brand-base/20 dark:border-brand-light/20 rounded-xl p-6 text-center hover:border-brand-base dark:hover:border-brand-light transition-colors">
+            <svg class="w-12 h-12 text-brand-base dark:text-brand-light mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <h3 class="font-bold text-lg">{county}</h3>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Cities We Serve -->
+  <section class="section-padding bg-gray-50 dark:bg-gray-800">
+    <div class="container-custom">
+      <h2 class="heading-lg mb-12 text-center">Cities & Communities</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+        {cities.map((city) => (
+          <div class="bg-white dark:bg-gray-700 rounded-lg p-4 text-center hover:shadow-md transition-shadow">
+            <span class="font-medium text-gray-900 dark:text-gray-100">{city}</span>
+          </div>
+        ))}
+      </div>
+      <div class="text-center mt-12">
+        <p class="text-gray-600 dark:text-gray-300 mb-4">
+          Don't see your city listed?{' '}
+          <a href="/contact" class="text-brand-base dark:text-brand-light hover:underline font-semibold">
+            Contact us
+          </a>
+          {' '}to confirm service availability.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Local -->
+  <section class="section-padding bg-white dark:bg-gray-900">
+    <div class="container-custom max-w-4xl">
+      <h2 class="heading-lg mb-8 text-center">Why Choose a Local Utah Contractor?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-blue-600 dark:text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+          </div>
+          <h3 class="font-bold mb-2">Local Knowledge</h3>
+          <p class="text-gray-600 dark:text-gray-300 text-sm">
+            We understand Utah's unique climate, building codes, and design preferences
+          </p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-green-600 dark:text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="font-bold mb-2">Quick Response</h3>
+          <p class="text-gray-600 dark:text-gray-300 text-sm">
+            We're nearby and can respond quickly to consultations and service needs
+          </p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-purple-600 dark:text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+          </div>
+          <h3 class="font-bold mb-2">Community Trust</h3>
+          <p class="text-gray-600 dark:text-gray-300 text-sm">
+            Our reputation matters—we're part of the communities we serve
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Placeholder -->
+  <section class="section-padding bg-gray-50 dark:bg-gray-800">
+    <div class="container-custom">
+      <h2 class="heading-lg mb-8 text-center">Our Service Area</h2>
+      <div class="max-w-4xl mx-auto aspect-video bg-gray-200 dark:bg-gray-700 rounded-xl flex items-center justify-center">
+        <div class="text-center">
+          <svg class="w-20 h-20 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+          </svg>
+          <p class="text-gray-500 dark:text-gray-400 text-lg">Service Area Map</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section-padding bg-brand-base text-white">
+    <div class="container-custom">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="heading-lg mb-6">Serving Your Community</h2>
+        <p class="text-xl mb-8 text-gray-100">
+          Ready to start your remodeling or construction project? We'd love to work with you.
+        </p>
+        <Button href="/contact" variant="primary" size="lg">
+          Get Your Free Estimate
+        </Button>
+      </div>
+    </div>
+  </section>
+</MainLayout>

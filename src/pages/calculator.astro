@@ -1,0 +1,48 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import CostCalculator from '@/components/CostCalculator';
+---
+
+<MainLayout 
+  title="Project Cost Calculator - Get an Instant Estimate"
+  description="Get a detailed cost estimate for your construction project in minutes. Our interactive calculator provides accurate pricing based on Utah market rates."
+>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-brand-dark to-brand-base text-white py-16 lg:py-20">
+    <div class="container-custom">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="heading-xl mb-6">Project Cost Calculator</h1>
+        <p class="text-xl text-gray-100 leading-relaxed mb-4">
+          Get a detailed estimate for your construction project in just a few minutes.
+        </p>
+        <p class="text-base text-gray-200">
+          Answer a few questions about your project, and we'll provide a comprehensive rough guide with pricing breakdowns. This is not a final quote, but it will give you a solid understanding of what to expect.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Calculator Section -->
+  <section class="py-12 lg:py-16 bg-gray-50 dark:bg-gray-900">
+    <div class="container-custom max-w-4xl">
+      <CostCalculator client:load />
+    </div>
+  </section>
+
+  <!-- Disclaimer -->
+  <section class="py-8 bg-gray-100 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+    <div class="container-custom max-w-3xl">
+      <div class="text-sm text-gray-600 dark:text-gray-400 space-y-2">
+        <p class="font-semibold">Important Disclaimers:</p>
+        <ul class="list-disc list-inside space-y-1 ml-2">
+          <li>Estimates are based on industry-standard Utah pricing and are approximate</li>
+          <li>Final costs may vary based on site conditions, material availability, and specific project requirements</li>
+          <li>This calculator provides a rough guide, not a binding quote</li>
+          <li>A detailed quote requires an on-site consultation</li>
+          <li>Estimates are valid for 60 days from generation</li>
+          <li>All projects subject to permit requirements and inspections</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</MainLayout>

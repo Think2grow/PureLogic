@@ -1,0 +1,164 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import Button from '@/components/Button.astro';
+---
+
+<MainLayout 
+  title="Thank You - Your Estimate is Ready"
+  description="Thank you for using our construction cost calculator. We'll be in touch soon to discuss your project."
+>
+  <!-- Thank You Section -->
+  <section class="bg-gradient-to-br from-brand-dark to-brand-base text-white py-20 lg:py-28">
+    <div class="container-custom">
+      <div class="max-w-3xl mx-auto text-center">
+        <div class="text-6xl mb-6">✅</div>
+        <h1 class="heading-xl mb-6">Your Estimate is Ready!</h1>
+        <p class="text-xl text-gray-100 leading-relaxed">
+          Thank you for providing your project details. We've generated a comprehensive rough guide for your construction project.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Next Steps -->
+  <section class="py-16 lg:py-20">
+    <div class="container-custom max-w-4xl">
+      <div class="text-center mb-12">
+        <h2 class="heading-lg mb-4">What Happens Next?</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-400">
+          Here's what you can expect from Pure Logic Solutions
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 mb-12">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-brand-base/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-3xl">📧</span>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Check Your Email</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            Your rough guide has been sent to your email. Download the PDF for your records.
+          </p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 bg-brand-base/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-3xl">📞</span>
+          </div>
+          <h3 class="font-bold text-lg mb-2">We'll Reach Out</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            Our team will contact you within 1-2 business days to discuss your project in detail.
+          </p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 bg-brand-base/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-3xl">🏗️</span>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Schedule Consultation</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            We'll schedule an on-site visit to provide an accurate, detailed quote.
+          </p>
+        </div>
+      </div>
+
+      <!-- Important Notice -->
+      <div class="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-6 mb-12">
+        <div class="flex gap-3">
+          <div class="text-2xl">⚠️</div>
+          <div>
+            <h3 class="font-bold text-amber-900 dark:text-amber-200 mb-2">
+              Important: This is a Rough Guide, Not a Final Quote
+            </h3>
+            <p class="text-amber-800 dark:text-amber-300 text-sm">
+              The estimate you received is based on industry-standard pricing and the information you provided. 
+              Final costs may vary based on site conditions, material availability, specific requirements, and 
+              after a detailed on-site assessment. A formal quote will be provided after our consultation.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <Button href="/contact" variant="primary" size="lg">
+          Schedule a Consultation Now
+        </Button>
+        <Button href="/" variant="secondary" size="lg">
+          Back to Home
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-16 bg-gray-50 dark:bg-gray-900">
+    <div class="container-custom max-w-3xl">
+      <h2 class="heading-lg text-center mb-12">Questions About Your Estimate?</h2>
+      
+      <div class="space-y-6">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6">
+          <h3 class="font-bold text-lg mb-2">How accurate is this estimate?</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            Our calculator uses current Utah market rates and provides a realistic range. However, final costs 
+            depend on many factors including specific material choices, site conditions, and project complexity. 
+            We recommend treating this as a budgeting guide.
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6">
+          <h3 class="font-bold text-lg mb-2">When will I hear from you?</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            We aim to contact all leads within 1-2 business days. If your timeline is urgent, 
+            please call us directly at (801) 555-0123.
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6">
+          <h3 class="font-bold text-lg mb-2">What should I do to prepare?</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            Start gathering inspiration photos, thinking about your must-haves vs. nice-to-haves, 
+            and any questions you have about the process. We'll guide you through everything during 
+            our consultation.
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6">
+          <h3 class="font-bold text-lg mb-2">Is there an obligation to move forward?</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            Absolutely not. The estimate and initial consultation are free with no obligation. 
+            We want you to make the best decision for your project.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="py-16">
+    <div class="container-custom max-w-2xl text-center">
+      <h2 class="heading-lg mb-4">Need to Talk Sooner?</h2>
+      <p class="text-lg text-gray-600 dark:text-gray-400 mb-8">
+        Don't want to wait? Give us a call or send an email anytime.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a 
+          href="tel:+18015550123" 
+          class="flex items-center gap-2 text-brand-base hover:text-brand-dark font-semibold"
+        >
+          <span class="text-2xl">📞</span>
+          (801) 555-0123
+        </a>
+        <span class="hidden sm:inline text-gray-400">|</span>
+        <a 
+          href="mailto:info@purelogic-solutions.com" 
+          class="flex items-center gap-2 text-brand-base hover:text-brand-dark font-semibold"
+        >
+          <span class="text-2xl">✉️</span>
+          info@purelogic-solutions.com
+        </a>
+      </div>
+    </div>
+  </section>
+</MainLayout>
