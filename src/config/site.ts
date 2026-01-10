@@ -4,8 +4,8 @@ export const siteConfig = {
   tagline: "Premium General Contracting Services in Utah",
   
   // Contact Information
-  phone: "(801) 555-0123",
-  email: "info@purelogic-solutions.com",
+  phone: "+1 801-905-8175",
+  email: "Purelogicsolutionsutah@gmail.com",
   address: {
     street: "123 Main Street",
     city: "Salt Lake City",
@@ -14,7 +14,7 @@ export const siteConfig = {
   },
   
   // Utah Contractor License Information
-  utahLicenseNumber: "XX-XXXXXX", // Replace with actual DOPL license number
+  utahLicenseNumber: "14253923-5501", // Utah DOPL license number
   licenseVerifyUrl: "https://secure.utah.gov/llv/search/index.html", // Utah DOPL verification
   
   // Insurance & Bonding - ONLY display if confirmed and set to true
