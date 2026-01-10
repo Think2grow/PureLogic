@@ -201,13 +201,13 @@ export const projects: Project[] = [
     ],
     problem: "After years of searching, the clients couldn't find an existing home that met their needs for space, style, and location. They wanted a modern home that fit the mountain setting and their active lifestyle.",
     solution: "Working closely with their architect, we built a stunning custom home that maximizes views, natural light, and livability. Clean lines, natural materials, and thoughtful details created their dream home. The open floor plan and outdoor connections perfectly suit their lifestyle.",
-    testimonial: {,
+    testimonial: {
+      text: "Building a custom home felt overwhelming at first, but PureLogic made it an enjoyable journey. Their communication was excellent, their craftsmanship is impeccable, and they helped us navigate every decision. We're in love with our home!",
+      author: "Michael & Lisa P.",
+      role: "Homeowners",
       location: "Alpine, UT",
       projectType: "Custom Home",
       rating: 5
-      text: "Building a custom home felt overwhelming at first, but PureLogic made it an enjoyable journey. Their communication was excellent, their craftsmanship is impeccable, and they helped us navigate every decision. We're in love with our home!",
-      author: "Michael & Lisa P.",
-      role: "Homeowners"
     }
   },
   {
@@ -236,13 +236,13 @@ export const projects: Project[] = [
     ],
     problem: "The 1960s home had great bones and a prime location but was completely outdated. Every surface needed attention, and systems were aging. The buyers wanted to honor the mid-century character while modernizing for today's living.",
     solution: "We updated every aspect while preserving the home's mid-century charm. Clean lines, period-appropriate details, and modern functionality came together beautifully. The result is a home that feels authentically vintage yet completely current.",
-    testimonial: {,
+    testimonial: {
+      text: "PureLogic understood our vision immediately. They respected the home's history while making it functional and beautiful for our young family. The project was complex, but they managed it flawlessly.",
+      author: "Chris & Emma W.",
+      role: "Homeowners",
       location: "Orem, UT",
       projectType: "Whole Home Remodel",
       rating: 5
-      text: "PureLogic understood our vision immediately. They respected the home's history while making it functional and beautiful for our young family. The project was complex, but they managed it flawlessly.",
-      author: "Chris & Emma W.",
-      role: "Homeowners"
     }
   }
 ];
