@@ -90,10 +90,11 @@ function calculateAreaCost(area: string, tier: Tier, sqft: number, scopeMultipli
 
   switch (area) {
     case 'kitchen':
-      // Typical kitchen: 20 linear feet of cabinets, 30 sq ft countertops, 25 sq ft backsplash
-      const cabinetsLF = 20;
-      const countertopSqFt = 30;
-      const backsplashSqFt = 25;
+      // Typical kitchen ~150 sq ft; scale quantities based on input sqft
+      const kitchenScale = Math.max(0.5, sqft / 150);
+      const cabinetsLF = Math.round(20 * kitchenScale);
+      const countertopSqFt = Math.round(30 * kitchenScale);
+      const backsplashSqFt = Math.round(25 * kitchenScale);
 
       items.push({
         name: `${tier.charAt(0).toUpperCase() + tier.slice(1)} Cabinets`,
@@ -134,6 +135,8 @@ function calculateAreaCost(area: string, tier: Tier, sqft: number, scopeMultipli
       break;
 
     case 'bathroom':
+      // Typical bathroom ~75 sq ft; scale shower size with sqft
+      const bathroomScale = Math.max(0.5, sqft / 75);
       items.push({
         name: `${tier.charAt(0).toUpperCase() + tier.slice(1)} Vanity`,
         quantity: 1,
@@ -150,7 +153,7 @@ function calculateAreaCost(area: string, tier: Tier, sqft: number, scopeMultipli
         total: PRICING_DATA.bathroom.toilet[tier]
       });
 
-      const showerSqFt = 40; // Typical shower size
+      const showerSqFt = Math.round(40 * bathroomScale); // Typical shower size scaled
       const showerTilePrice = PRICING_DATA.bathroom.showerTilePerSqFt[tier];
       items.push({
         name: 'Shower (Tile)',
@@ -303,12 +306,17 @@ function calculateAreaCost(area: string, tier: Tier, sqft: number, scopeMultipli
 
     case 'basement':
       // Basement finishing includes flooring, walls, ceiling
+      const basementTierMult = {
+        standard: 1.0,
+        premium: 1.3,
+        luxury: 1.6
+      } as const;
       items.push({
         name: 'Basement Finishing',
         quantity: sqft,
         unit: 'sq ft',
-        unitPrice: PRICING_DATA.foundation.basementFinished * tierMult,
-        total: sqft * PRICING_DATA.foundation.basementFinished * tierMult
+        unitPrice: PRICING_DATA.foundation.basementFinished * basementTierMult[tier],
+        total: sqft * PRICING_DATA.foundation.basementFinished * basementTierMult[tier]
       });
 
       break;
@@ -352,29 +360,19 @@ function calculateAreaCost(area: string, tier: Tier, sqft: number, scopeMultipli
       break;
 
     case 'addition':
-      // Addition includes foundation, framing, exterior
-      items.push({
-        name: 'Foundation (Slab)',
-        quantity: sqft,
-        unit: 'sq ft',
-        unitPrice: PRICING_DATA.foundation.slabOnGrade,
-        total: sqft * PRICING_DATA.foundation.slabOnGrade
-      });
+      // Home additions in Utah: $150-$400/sq ft depending on tier
+      const additionPricePerSqFt: Record<Tier, number> = {
+        standard: 175,
+        premium: 250,
+        luxury: 350
+      };
 
       items.push({
-        name: 'Framing',
+        name: 'Home Addition (Complete Build)',
         quantity: sqft,
         unit: 'sq ft',
-        unitPrice: PRICING_DATA.framing.wallFraming * 1.5,
-        total: sqft * PRICING_DATA.framing.wallFraming * 1.5
-      });
-
-      items.push({
-        name: 'Exterior Siding',
-        quantity: sqft * 0.5,
-        unit: 'sq ft',
-        unitPrice: PRICING_DATA.exterior.vinylSiding * tierMult,
-        total: sqft * 0.5 * PRICING_DATA.exterior.vinylSiding * tierMult
+        unitPrice: additionPricePerSqFt[tier],
+        total: sqft * additionPricePerSqFt[tier]
       });
 
       break;

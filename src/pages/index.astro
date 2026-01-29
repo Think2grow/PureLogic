@@ -3,18 +3,14 @@ import MainLayout from '@/layouts/MainLayout.astro';
 import Button from '@/components/Button.astro';
 import TrustBar from '@/components/TrustBar.astro';
 import ServiceCard from '@/components/ServiceCard.astro';
-import ProjectCard from '@/components/ProjectCard.astro';
-import TestimonialCard from '@/components/TestimonialCard.astro';
-import FAQItem from '@/components/FAQItem.astro';
 import ScrollReveal from '@/components/ScrollReveal';
 import { siteConfig } from '@/config/site';
 import { services } from '@/data/services';
-import { projects } from '@/data/projects';
-import { testimonials, faqs } from '@/data/testimonials';
+import { testimonials } from '@/data/testimonials';
+import TestimonialsCarousel from '@/components/TestimonialsCarousel';
 
-const featuredServices = services.filter(s => s.featured).slice(0, 6);
-const featuredProjects = projects.filter(p => p.featured).slice(0, 6);
-const homeFaqs = faqs.filter(f => f.category === 'General' || f.category === 'Process').slice(0, 6);
+const featuredServices = services.filter(s => s.featured).slice(0, 3);
+const allTestimonials = testimonials.slice(0, 3);
 ---
 
 <MainLayout 
@@ -22,16 +18,15 @@ const homeFaqs = faqs.filter(f => f.category === 'General' || f.category === 'Pr
   description={siteConfig.seo.description}
 >
   <!-- Hero Section -->
-  <section class="relative bg-gradient-to-br from-brand-dark via-brand-base to-brand-dark text-white section-padding">
-    <div class="absolute inset-0 bg-black/20"></div>
+  <section class="relative text-white section-padding" style="background-image: url('/images/20170109_132433.jpg'); background-size: cover; background-position: center;">
+    <div class="absolute inset-0 bg-black/40"></div>
     <div class="container-custom relative z-10">
-      <div class="max-w-4xl mx-auto text-center">
+      <div class="max-w-3xl mx-auto text-center">
         <h1 class="heading-xl mb-6">
-          Premium General Contractor in Utah
+          Premium Home Remodeling & Construction
         </h1>
         <p class="text-xl md:text-2xl mb-8 text-gray-100 leading-relaxed">
-          Expert kitchen remodels, bathroom renovations, home additions, and custom builds. 
-          Trusted by Utah families for over a decade.
+          Expert craftsmanship. Clear communication. Results that exceed expectations.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Button href="/contact" variant="primary" size="lg">
@@ -41,139 +36,130 @@ const homeFaqs = faqs.filter(f => f.category === 'General' || f.category === 'Pr
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
             </svg>
-            Call/Text {siteConfig.phone}
+            Call Now
           </Button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Trust Bar -->
+  <!-- Trust Indicators -->
   <TrustBar />
 
-  <!-- Featured Services -->
+  <!-- Why Choose Us (Brief) -->
   <section class="section-padding bg-white dark:bg-gray-900">
     <div class="container-custom">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+        <!-- Expertise -->
+        <div class="text-center">
+          <div class="w-16 h-16 bg-brand-base/15 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-brand-base" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Expert Craftsmanship</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            Licensed professionals with years of experience delivering high-quality work on every project.
+          </p>
+        </div>
+
+        <!-- Communication -->
+        <div class="text-center">
+          <div class="w-16 h-16 bg-brand-base/15 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-brand-base" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Clear Communication</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            Regular updates and transparent communication throughout your project from start to finish.
+          </p>
+        </div>
+
+        <!-- Reliability -->
+        <div class="text-center">
+          <div class="w-16 h-16 bg-brand-base/15 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-brand-base" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">On Time, On Budget</h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            We respect your timeline and budget. No surprise costs or unexpected delays.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Services -->
+  <section class="section-padding bg-gray-50 dark:bg-gray-800">
+    <div class="container-custom">
       <div class="text-center max-w-3xl mx-auto mb-12">
-        <h2 class="heading-lg mb-4">Our Services</h2>
+        <h2 class="heading-lg mb-4">What We Specialize In</h2>
         <p class="text-lg text-gray-600 dark:text-gray-300">
-          From kitchens and bathrooms to whole-home remodels and custom builds, 
-          we deliver exceptional craftsmanship on every project.
+          From kitchens to custom homes, we transform spaces with precision and care.
         </p>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
         {featuredServices.map((service) => (
           <ServiceCard service={service} />
         ))}
       </div>
 
       <div class="text-center mt-12">
-        <Button href="/services" variant="outline">
-          View All Services
+        <Button href="/services" variant="primary">
+          Explore All Services
         </Button>
       </div>
     </div>
   </section>
 
-  <!-- Featured Projects -->
-  <section class="section-padding bg-gray-50 dark:bg-gray-800">
-    <div class="container-custom">
-      <div class="text-center max-w-3xl mx-auto mb-12">
-        <h2 class="heading-lg mb-4">Recent Projects</h2>
-        <p class="text-lg text-gray-600 dark:text-gray-300">
-          See how we've transformed homes across Utah with quality craftsmanship and attention to detail.
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-        {featuredProjects.map((project) => (
-          <ProjectCard project={project} />
-        ))}
-      </div>
-
-      <div class="text-center mt-12">
-        <Button href="/projects" variant="outline">
-          View All Projects
-        </Button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Our Process -->
+  <!-- VSL Video Section -->
   <section class="section-padding bg-white dark:bg-gray-900">
     <div class="container-custom">
       <div class="text-center max-w-3xl mx-auto mb-12">
-        <h2 class="heading-lg mb-4">Our Process</h2>
+        <h2 class="heading-lg mb-4">See Our Approach</h2>
         <p class="text-lg text-gray-600 dark:text-gray-300">
-          We've refined our process to ensure clear communication, quality workmanship, 
-          and results that exceed expectations.
+          Understand our proven methodology and why homeowners trust us
         </p>
       </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-        <!-- Step 1 -->
-        <div class="text-center">
-          <div class="w-16 h-16 bg-brand-base/10 dark:bg-brand-light/10 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span class="text-2xl font-bold text-brand-base dark:text-brand-light">1</span>
+      
+      <!-- Video Placeholder -->
+      <div class="max-w-4xl mx-auto">
+        <div class="relative w-full bg-gray-900 rounded-2xl overflow-hidden shadow-2xl" style="aspect-ratio: 16 / 9;">
+          <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-800 to-gray-900">
+            <div class="text-center">
+              <div class="mb-4">
+                <svg class="w-20 h-20 text-brand-base mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2 6a2 2 0 012-2h12a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
+                </svg>
+              </div>
+              <p class="text-white font-semibold mb-2">VSL Video Coming Soon</p>
+              <p class="text-gray-400 text-sm">Our founder explains the Pure Logic difference</p>
+            </div>
           </div>
-          <h3 class="text-xl font-bold mb-3">Discovery & Design</h3>
-          <p class="text-gray-600 dark:text-gray-300">
-            We start with a detailed consultation to understand your vision, needs, and budget. 
-            Together we'll plan your project and create a clear scope of work.
-          </p>
         </div>
-
-        <!-- Step 2 -->
-        <div class="text-center">
-          <div class="w-16 h-16 bg-brand-base/10 dark:bg-brand-light/10 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span class="text-2xl font-bold text-brand-base dark:text-brand-light">2</span>
-          </div>
-          <h3 class="text-xl font-bold mb-3">Build & Communicate</h3>
-          <p class="text-gray-600 dark:text-gray-300">
-            Our skilled team brings your project to life with expert craftsmanship. 
-            We provide regular updates and maintain clear communication throughout.
-          </p>
-        </div>
-
-        <!-- Step 3 -->
-        <div class="text-center">
-          <div class="w-16 h-16 bg-brand-base/10 dark:bg-brand-light/10 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span class="text-2xl font-bold text-brand-base dark:text-brand-light">3</span>
-          </div>
-          <h3 class="text-xl font-bold mb-3">Closeout & Warranty</h3>
-          <p class="text-gray-600 dark:text-gray-300">
-            We complete a thorough walkthrough together, address any final details, 
-            and provide warranty documentation for your peace of mind.
-          </p>
-        </div>
-      </div>
-
-      <div class="text-center mt-12">
-        <Button href="/process" variant="outline">
-          Learn More About Our Process
-        </Button>
       </div>
     </div>
   </section>
 
-  <!-- Testimonials -->
+  <!-- Testimonial Preview -->
   <section class="section-padding bg-gray-50 dark:bg-gray-800">
     <div class="container-custom">
       <div class="text-center max-w-3xl mx-auto mb-12">
-        <h2 class="heading-lg mb-4">What Our Clients Say</h2>
+        <h2 class="heading-lg mb-4">Trusted by Utah Homeowners</h2>
         <p class="text-lg text-gray-600 dark:text-gray-300">
-          Don't just take our word for it. Here's what Utah homeowners say about working with us.
+          See what families say about working with us
         </p>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-        {testimonials.slice(0, 6).map((testimonial) => (
-          <TestimonialCard testimonial={testimonial} />
-        ))}
+      <div class="max-w-4xl mx-auto">
+        <TestimonialsCarousel client:load testimonials={allTestimonials} />
       </div>
 
-      <div class="text-center mt-12">
+      <div class="text-center mt-8">
         <Button href="/reviews" variant="outline">
           Read More Reviews
         </Button>
@@ -181,82 +167,67 @@ const homeFaqs = faqs.filter(f => f.category === 'General' || f.category === 'Pr
     </div>
   </section>
 
-  <!-- Service Areas -->
+  <!-- Process Preview -->
   <section class="section-padding bg-white dark:bg-gray-900">
     <div class="container-custom">
       <div class="text-center max-w-3xl mx-auto mb-12">
-        <h2 class="heading-lg mb-4">Serving Communities Across Utah</h2>
+        <h2 class="heading-lg mb-4">Our 3-Step Process</h2>
         <p class="text-lg text-gray-600 dark:text-gray-300">
-          Proudly serving homeowners throughout Salt Lake County, Utah County, and surrounding areas.
+          From consultation to completion, we keep you informed every step of the way
         </p>
       </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
-        {siteConfig.serviceAreas.slice(0, 12).map((area) => (
-          <div class="text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-            <span class="font-medium text-gray-900 dark:text-gray-100">{area}</span>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-brand-base/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-2xl font-bold text-brand-base">1</span>
           </div>
-        ))}
-      </div>
-
-      <div class="text-center mt-8">
-        <Button href="/areas" variant="outline">
-          View All Service Areas
-        </Button>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ Section -->
-  <section id="faqs" class="section-padding bg-gray-50 dark:bg-gray-800">
-    <div class="container-custom">
-      <div class="text-center max-w-3xl mx-auto mb-12">
-        <h2 class="heading-lg mb-4">Frequently Asked Questions</h2>
-        <p class="text-lg text-gray-600 dark:text-gray-300">
-          Get answers to common questions about our remodeling and construction services.
-        </p>
-      </div>
-
-      <div class="max-w-3xl mx-auto">
-        {homeFaqs.map((faq, index) => (
-          <FAQItem 
-            question={faq.question} 
-            answer={faq.answer} 
-            id={`home-${index}`} 
-          />
-        ))}
-      </div>
-
-      <div class="text-center mt-8">
-        <p class="text-gray-600 dark:text-gray-300">
-          Have more questions?{' '}
-          <a href="/contact" class="text-brand-base dark:text-brand-light hover:underline font-semibold">
-            Contact us
+          <h3 class="text-xl font-bold mb-3">Discovery & Design</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">
+            Understand your vision and create a detailed plan
+          </p>
+          <a href="/process" class="inline-flex items-center text-brand-base font-semibold hover:opacity-80 transition-opacity">
+            Learn more
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
           </a>
-          {' '}and we'll be happy to help.
-        </p>
-      </div>
-    </div>
-  </section>
+        </div>
 
-  <!-- Final CTA Section -->
-  <section class="section-padding bg-brand-base text-white">
-    <div class="container-custom">
-      <div class="max-w-3xl mx-auto text-center">
-        <h2 class="heading-lg mb-6">Ready to Start Your Project?</h2>
-        <p class="text-xl mb-8 text-gray-100">
-          Let's discuss your vision and create a plan to bring it to life. 
-          Get a detailed estimate with no obligation.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button href="/contact" variant="primary" size="lg">
-            Get a Free Estimate
-          </Button>
-          <Button href={`tel:${siteConfig.phone.replace(/\D/g, '')}`} variant="outline" size="lg" class="text-white border-white hover:bg-white/10">
-            Call {siteConfig.phone}
-          </Button>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-brand-base/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-2xl font-bold text-brand-base">2</span>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Build & Communicate</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">
+            Expert execution with regular updates and transparency
+          </p>
+          <a href="/process" class="inline-flex items-center text-brand-base font-semibold hover:opacity-80 transition-opacity">
+            Learn more
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 bg-brand-base/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-2xl font-bold text-brand-base">3</span>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Closeout & Warranty</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-4">
+            Final walkthrough and comprehensive warranty support
+          </p>
+          <a href="/process" class="inline-flex items-center text-brand-base font-semibold hover:opacity-80 transition-opacity">
+            Learn more
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
         </div>
       </div>
     </div>
   </section>
+
+
 </MainLayout>

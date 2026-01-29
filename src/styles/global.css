@@ -2,14 +2,14 @@
 @import 'tailwindcss';
 
 @theme {
-  /* Brand Colors */
-  --color-brand-base: #1e3a8a; /* Deep professional blue */
-  --color-brand-dark: #1e293b;
-  --color-brand-light: #3b82f6;
+  /* Brand Colors - Premium Cyan/Teal */
+  --color-brand-base: #13b1d7; /* Premium cyan/teal */
+  --color-brand-dark: #ffffff; /* White */
+  --color-brand-light: #13b1d7;
   
   /* Extended brand palette */
-  --color-accent: #f59e0b; /* Warm accent for CTAs */
-  --color-accent-dark: #d97706;
+  --color-accent: #13b1d7; /* Premium cyan accent */
+  --color-accent-dark: #0d8fb3;
   
   /* Font Family */
   --font-sans: 'Manrope Variable', system-ui, -apple-system, sans-serif;
@@ -24,8 +24,8 @@
   --radius-2xl: 1.5rem;
   
   /* Box shadows */
-  --shadow-brand: 0 4px 6px -1px rgb(30 58 138 / 0.1), 0 2px 4px -2px rgb(30 58 138 / 0.1);
-  --shadow-brand-lg: 0 10px 15px -3px rgb(30 58 138 / 0.1), 0 4px 6px -4px rgb(30 58 138 / 0.1);
+  --shadow-brand: 0 10px 25px -5px rgb(19 177 215 / 0.15), 0 5px 10px -5px rgb(19 177 215 / 0.08);
+  --shadow-brand-lg: 0 20px 40px -10px rgb(19 177 215 / 0.2), 0 10px 20px -10px rgb(19 177 215 / 0.12);
 }
 
 /* Base styles */
@@ -53,8 +53,9 @@ html {
 }
 
 body {
-  @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+  @apply bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-50;
   font-family: var(--font-sans);
+  letter-spacing: -0.01em;
 }
 
 /* Focus visible styles for accessibility */
@@ -81,34 +82,34 @@ body {
 }
 
 .heading-xl {
-  @apply text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight;
+  @apply text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-950 dark:text-white;
 }
 
 .heading-lg {
-  @apply text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight;
+  @apply text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-gray-950 dark:text-white;
 }
 
 .heading-md {
-  @apply text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight;
+  @apply text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-gray-950 dark:text-white;
 }
 
 .heading-sm {
-  @apply text-xl sm:text-2xl font-semibold;
+  @apply text-xl sm:text-2xl font-semibold text-gray-950 dark:text-white;
 }
 
 /* Button base styles */
 .btn {
-  @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
+  @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-bold transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 uppercase tracking-wide;
 }
 
 .btn-primary {
-  @apply bg-accent hover:bg-accent-dark text-white shadow-lg hover:shadow-xl focus-visible:outline-accent;
+  @apply bg-brand-base hover:bg-brand-base/90 text-white shadow-lg hover:shadow-2xl focus-visible:outline-brand-base;
 }
 
 .btn-secondary {
-  @apply bg-brand-base hover:bg-brand-dark text-white shadow-md hover:shadow-lg focus-visible:outline-brand-base;
+  @apply bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-brand-base dark:text-brand-base shadow-md hover:shadow-lg focus-visible:outline-brand-base;
 }
 
 .btn-outline {
-  @apply border-2 border-gray-300 dark:border-gray-600 hover:border-brand-base dark:hover:border-brand-light hover:bg-brand-base/5 dark:hover:bg-brand-light/10 focus-visible:outline-brand-base;
+  @apply border-2 border-brand-base text-brand-base hover:bg-brand-base/10 dark:hover:bg-brand-base/20 focus-visible:outline-brand-base font-bold;
 }

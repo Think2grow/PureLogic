@@ -5,7 +5,7 @@ import Button from '@/components/Button.astro';
 
 <MainLayout 
   title="Thank You - Your Estimate is Ready"
-  description="Thank you for using our construction cost calculator. We'll be in touch soon to discuss your project."
+  description="Thank you for using our construction cost calculator. Download your estimate as a PDF for your records."
 >
   <!-- Thank You Section -->
   <section class="bg-gradient-to-br from-brand-dark to-brand-base text-white py-20 lg:py-28">
@@ -14,7 +14,7 @@ import Button from '@/components/Button.astro';
         <div class="text-6xl mb-6">✅</div>
         <h1 class="heading-xl mb-6">Your Estimate is Ready!</h1>
         <p class="text-xl text-gray-100 leading-relaxed">
-          Thank you for providing your project details. We've generated a comprehensive rough guide for your construction project.
+          Thank you for providing your project details. Download your estimate as a PDF for your records.
         </p>
       </div>
     </div>
@@ -24,42 +24,10 @@ import Button from '@/components/Button.astro';
   <section class="py-16 lg:py-20">
     <div class="container-custom max-w-4xl">
       <div class="text-center mb-12">
-        <h2 class="heading-lg mb-4">What Happens Next?</h2>
+        <h2 class="heading-lg mb-4">Download Your PDF Estimate</h2>
         <p class="text-lg text-gray-600 dark:text-gray-400">
-          Here's what you can expect from Pure Logic Solutions
+          Keep a copy of your estimate for reference as you plan your project.
         </p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-8 mb-12">
-        <div class="text-center">
-          <div class="w-16 h-16 bg-brand-base/10 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span class="text-3xl">📧</span>
-          </div>
-          <h3 class="font-bold text-lg mb-2">Check Your Email</h3>
-          <p class="text-gray-600 dark:text-gray-400">
-            Your rough guide has been sent to your email. Download the PDF for your records.
-          </p>
-        </div>
-
-        <div class="text-center">
-          <div class="w-16 h-16 bg-brand-base/10 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span class="text-3xl">📞</span>
-          </div>
-          <h3 class="font-bold text-lg mb-2">We'll Reach Out</h3>
-          <p class="text-gray-600 dark:text-gray-400">
-            Our team will contact you within 1-2 business days to discuss your project in detail.
-          </p>
-        </div>
-
-        <div class="text-center">
-          <div class="w-16 h-16 bg-brand-base/10 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span class="text-3xl">🏗️</span>
-          </div>
-          <h3 class="font-bold text-lg mb-2">Schedule Consultation</h3>
-          <p class="text-gray-600 dark:text-gray-400">
-            We'll schedule an on-site visit to provide an accurate, detailed quote.
-          </p>
-        </div>
       </div>
 
       <!-- Important Notice -->
@@ -80,12 +48,9 @@ import Button from '@/components/Button.astro';
       </div>
 
       <!-- CTA Buttons -->
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button href="/contact" variant="primary" size="lg">
-          Schedule a Consultation Now
-        </Button>
-        <Button href="/" variant="secondary" size="lg">
-          Back to Home
+      <div class="flex justify-center">
+        <Button href="/projects" variant="primary" size="lg">
+          Download PDF Rough Guide
         </Button>
       </div>
     </div>

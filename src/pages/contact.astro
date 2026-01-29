@@ -28,19 +28,34 @@ import { siteConfig } from '@/config/site';
           <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-8">
             <h2 class="heading-md mb-6">Request an Estimate</h2>
             <form class="space-y-6" method="POST" action="/api/contact">
-              <!-- Name -->
-              <div>
-                <label for="name" class="block text-sm font-semibold mb-2 text-gray-900 dark:text-white">
-                  Full Name <span class="text-red-500">*</span>
-                </label>
-                <input 
-                  type="text" 
-                  id="name" 
-                  name="name" 
-                  required
-                  class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand-base dark:focus:ring-brand-light focus:border-transparent"
-                  placeholder="Your name"
-                />
+              <!-- First & Last Name -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label for="firstName" class="block text-sm font-semibold mb-2 text-gray-900 dark:text-white">
+                    First Name <span class="text-red-500">*</span>
+                  </label>
+                  <input 
+                    type="text" 
+                    id="firstName" 
+                    name="firstName" 
+                    required
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand-base dark:focus:ring-brand-light focus:border-transparent"
+                    placeholder="First name"
+                  />
+                </div>
+                <div>
+                  <label for="lastName" class="block text-sm font-semibold mb-2 text-gray-900 dark:text-white">
+                    Last Name <span class="text-red-500">*</span>
+                  </label>
+                  <input 
+                    type="text" 
+                    id="lastName" 
+                    name="lastName" 
+                    required
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand-base dark:focus:ring-brand-light focus:border-transparent"
+                    placeholder="Last name"
+                  />
+                </div>
               </div>
 
               <!-- Email & Phone -->
@@ -149,15 +164,16 @@ import { siteConfig } from '@/config/site';
                 </div>
               </div>
 
-              <!-- Message -->
+              <!-- Request -->
               <div>
-                <label for="message" class="block text-sm font-semibold mb-2 text-gray-900 dark:text-white">
-                  Tell Us About Your Project
+                <label for="request" class="block text-sm font-semibold mb-2 text-gray-900 dark:text-white">
+                  Tell Us About Your Project <span class="text-red-500">*</span>
                 </label>
                 <textarea 
-                  id="message" 
-                  name="message" 
+                  id="request" 
+                  name="request" 
                   rows="6"
+                  required
                   class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand-base dark:focus:ring-brand-light focus:border-transparent"
                   placeholder="Describe your project vision, goals, or any specific questions..."
                 ></textarea>
@@ -257,16 +273,20 @@ import { siteConfig } from '@/config/site';
               </div>
             </div>
 
-            <!-- Service Area Map Placeholder -->
+            <!-- Service Area Map -->
             <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6">
               <h3 class="font-bold text-lg mb-4">Service Area</h3>
-              <div class="aspect-square bg-gray-200 dark:bg-gray-700 rounded-lg flex items-center justify-center mb-3">
-                <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-                </svg>
-              </div>
-              <p class="text-sm text-gray-600 dark:text-gray-300">
-                Serving Salt Lake County, Utah County, and surrounding areas
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.1582092236!2d-111.97467!3d40.76078!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80e81af277b5b8ad%3A0x6f3507b8d4bfa38!2sSalt%20Lake%20City%2C%20UT!5e0!3m2!1sen!2sus!4v1611234567890" 
+                width="100%" 
+                height="300" 
+                style="border:0; border-radius:0.5rem;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+              <p class="text-sm text-gray-600 dark:text-gray-300 mt-3">
+                Serving Salt Lake County, Utah County, and surrounding areas within 45 minutes of Salt Lake City
               </p>
             </div>
           </div>

@@ -87,7 +87,7 @@ export const PRICING_DATA = {
     slabOnGrade: 8,
     crawlspace: 12,
     basementUnfinished: 35,
-    basementFinished: 85
+    basementFinished: 45
   },
 
   // Framing & Structural (per sq ft)

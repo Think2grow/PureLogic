@@ -757,12 +757,6 @@ function StepResults({ data }: { data: CalculatorData }) {
 
       {/* CTAs */}
       <div className="space-y-3">
-        <button 
-          onClick={() => handleDownloadPDF(estimate, data)}
-          className="btn-primary w-full"
-        >
-          Download PDF Rough Guide
-        </button>
         <a 
           href="/thank-you"
           className="btn-secondary w-full block text-center"
@@ -781,14 +775,19 @@ function StepResults({ data }: { data: CalculatorData }) {
 // Helper function to submit data to webhook
 async function submitToWebhook(data: CalculatorData, estimate: EstimateResult) {
   try {
+    const { firstName, lastName } = splitName(data.name || '');
+    const notes = buildCalculatorNotes(data, estimate);
+
     const payload = {
-      ...data,
-      estimate,
+      firstname: firstName,
+      lastname: lastName,
+      email: data.email || '',
+      phone: data.phone || '',
+      notes,
       submittedAt: new Date().toISOString()
     };
 
-    // Replace with your actual webhook URL
-    const webhookUrl = '/api/calculator-webhook'; // You'll need to create this endpoint
+    const webhookUrl = 'https://services.leadconnectorhq.com/hooks/0D3c4ZHt2RrTnSl27Qgl/webhook-trigger/3672958f-cf62-465f-b5e9-d78885b3f6f7';
     
     await fetch(webhookUrl, {
       method: 'POST',
@@ -801,6 +800,32 @@ async function submitToWebhook(data: CalculatorData, estimate: EstimateResult) {
     console.error('Failed to submit to webhook:', error);
     // Optionally handle error (e.g., show a message to user)
   }
+}
+
+function splitName(fullName: string) {
+  const trimmed = fullName.trim();
+  if (!trimmed) return { firstName: '', lastName: '' };
+  const parts = trimmed.split(/\s+/);
+  const firstName = parts[0] || '';
+  const lastName = parts.slice(1).join(' ') || '';
+  return { firstName, lastName };
+}
+
+function buildCalculatorNotes(data: CalculatorData, estimate: EstimateResult) {
+  const lines = [
+    'Source: Project Cost Calculator',
+    `Selected Areas: ${data.selectedAreas.length ? data.selectedAreas.join(', ') : 'N/A'}`,
+    `Project Scope: ${data.projectScope || 'N/A'}`,
+    `Square Footage: ${data.squareFootage ?? 'N/A'}`,
+    `Location: ${data.location || 'N/A'}`,
+    `Address: ${data.address || 'N/A'}`,
+    `Timeline: ${data.timeline || 'N/A'}`,
+    `Estimate Subtotal: ${formatCurrency(estimate.subtotal)}`,
+    `Estimate Total: ${formatCurrency(estimate.total)}`,
+    `Estimated Timeline: ${estimate.estimatedTimeline}`
+  ];
+
+  return lines.join('\n');
 }
 
 // Helper function to download PDF (placeholder)

@@ -210,7 +210,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     costRange: {
       min: 35000,
       max: 90000,
-      note: "Basement finishing costs vary based on square footage, ceiling height, existing utilities, and finish level. Most Utah basements cost $60-$100 per square foot to finish."
+      note: "Basement finishing costs vary based on square footage, ceiling height, existing utilities, and finish level. Most Utah basements cost $45-$75 per square foot to finish."
     },
     timeline: "6-12 weeks for most projects",
     features: [

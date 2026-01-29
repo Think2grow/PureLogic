@@ -15,7 +15,7 @@ const footerLinks = {
     { label: 'About Us', href: '/about' },
     { label: 'Our Process', href: '/process' },
     { label: 'Reviews', href: '/reviews' },
-    { label: 'Projects', href: '/projects' },
+    { label: 'Project Estimator', href: '/projects' },
     { label: 'Pricing Guide', href: '/pricing' }
   ],
   resources: [
@@ -27,7 +27,7 @@ const footerLinks = {
 };
 ---
 
-<footer class="bg-gray-900 text-gray-300">
+<footer class="bg-gray-950 text-gray-300 border-t border-gray-800">
   <div class="container-custom py-12 lg:py-16">
     <!-- Main Footer Content -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
@@ -39,12 +39,12 @@ const footerLinks = {
         <!-- Contact Info -->
         <div class="space-y-2 text-sm">
           <p>
-            <a href={`tel:${siteConfig.phone.replace(/\D/g, '')}`} class="hover:text-brand-light transition-colors">
+            <a href={`tel:${siteConfig.phone.replace(/\D/g, '')}`} class="text-brand-base font-semibold hover:text-brand-base/80 transition-colors">
               {siteConfig.phone}
             </a>
           </p>
           <p>
-            <a href={`mailto:${siteConfig.email}`} class="hover:text-brand-light transition-colors">
+            <a href={`mailto:${siteConfig.email}`} class="hover:text-brand-base transition-colors">
               {siteConfig.email}
             </a>
           </p>
