@@ -2,6 +2,9 @@
 import MainLayout from '@/layouts/MainLayout.astro';
 import Button from '@/components/Button.astro';
 import { siteConfig } from '@/config/site';
+
+const VIDEO_ID = '0846b02a586a6598b14f2f59a5822638';
+const POSTER = `https://videodelivery.net/${VIDEO_ID}/thumbnails/thumbnail.jpg?time=166s`;
 ---
 
 <MainLayout 
@@ -12,9 +15,9 @@ import { siteConfig } from '@/config/site';
   <section class="section-padding bg-white dark:bg-gray-900">
     <div class="container-custom">
       <div class="max-w-4xl mx-auto text-center mb-10">
-        <h1 class="heading-xl mb-6">Watch Why Pure Logic Solutions Was Built Differently</h1>
+        <h1 class="heading-xl mb-6">About Pure Logic Solutions</h1>
         <p class="text-xl text-gray-600 dark:text-gray-300">
-          A short message from founder Jared Bayless on the standards behind every project.
+          Built with integrity, powered by family, engineered for better living.
         </p>
       </div>
 
@@ -23,15 +26,38 @@ import { siteConfig } from '@/config/site';
           <div class="pointer-events-none absolute -top-24 -left-24 h-56 w-56 rounded-full bg-brand-base/20 blur-3xl"></div>
           <div class="pointer-events-none absolute -bottom-24 -right-16 h-56 w-56 rounded-full bg-brand-dark/25 blur-3xl"></div>
 
-          <div style="position: relative; padding-top: 56.25%;" class="rounded-xl overflow-hidden border border-white/20 dark:border-white/10 bg-black">
-            <iframe
-              src="https://customer-dn4rv9s0dbwshimy.cloudflarestream.com/0846b02a586a6598b14f2f59a5822638/iframe?autoplay=true&poster=https%3A%2F%2Fcustomer-dn4rv9s0dbwshimy.cloudflarestream.com%2F0846b02a586a6598b14f2f59a5822638%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&title=Pure+Logic+Solutions"
-              loading="lazy"
-              style="border: none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;"
-              allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-              allowfullscreen="true"
-            ></iframe>
-          </div>
+          <div id="about-video" data-video-id={VIDEO_ID} class="relative w-full aspect-video rounded-xl overflow-hidden bg-black border border-white/20 dark:border-white/10">
+            <div class="absolute inset-0 pointer-events-none bg-linear-to-b from-brand-base/20 via-transparent to-brand-dark/35"></div>
+          <button
+            id="about-video-trigger"
+            type="button"
+            class="absolute inset-0 w-full h-full group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            aria-label="Play introduction video"
+          >
+            <img
+              src={POSTER}
+              alt="Video preview"
+              class="absolute inset-0 w-full h-full object-cover scale-[1.01] transition duration-500 group-hover:scale-105"
+            />
+
+            <div class="absolute inset-0 bg-black/25 transition duration-300 group-hover:bg-black/10"></div>
+
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="inline-flex items-center gap-3 bg-white/90 backdrop-blur-md rounded-full pl-4 pr-5 py-3 border border-brand-base/25 shadow-xl shadow-brand-dark/25 transition duration-300 group-hover:bg-white">
+                <span class="inline-flex items-center justify-center h-10 w-10 rounded-full bg-brand-dark text-white text-base">▶</span>
+                <span class="text-sm font-semibold tracking-wide text-brand-dark">Watch Story</span>
+              </div>
+            </div>
+          </button>
+
+          <iframe
+            id="about-video-frame"
+            class="absolute inset-0 w-full h-full opacity-0 pointer-events-none transition-opacity duration-300"
+            src=""
+            loading="lazy"
+            allowfullscreen>
+          </iframe>
+        </div>
 
           <div class="mt-4 px-1 flex items-center justify-between text-xs sm:text-sm text-gray-600 dark:text-gray-300">
             <p>Founder introduction</p>
@@ -209,3 +235,77 @@ import { siteConfig } from '@/config/site';
     </div>
   </section>
 </MainLayout>
+
+<script is:inline>
+  const initAboutVideo = () => {
+    const videoRoot = document.getElementById('about-video');
+    const videoTrigger = document.getElementById('about-video-trigger');
+    const videoFrame = document.getElementById('about-video-frame');
+
+    if (!videoRoot || !videoTrigger || !videoFrame || videoTrigger.dataset.bound === 'true') {
+      return;
+    }
+
+    videoTrigger.dataset.bound = 'true';
+
+    const videoId = videoRoot.getAttribute('data-video-id');
+
+    if (!videoId) {
+      return;
+    }
+
+    const baseSrc = `https://iframe.videodelivery.net/${videoId}`;
+
+    const preloadVideo = () => {
+      if (!videoFrame.getAttribute('src') && videoTrigger.dataset.played !== 'true') {
+        videoFrame.setAttribute('src', `${baseSrc}?preload=true`);
+      }
+    };
+
+    if (!document.head.querySelector('link[data-about-video-preconnect="1"]')) {
+      const preconnect = document.createElement('link');
+      preconnect.rel = 'preconnect';
+      preconnect.href = 'https://iframe.videodelivery.net';
+      preconnect.crossOrigin = 'anonymous';
+      preconnect.setAttribute('data-about-video-preconnect', '1');
+      document.head.appendChild(preconnect);
+    }
+
+    if (!document.head.querySelector('link[data-about-video-preconnect="2"]')) {
+      const preconnect = document.createElement('link');
+      preconnect.rel = 'preconnect';
+      preconnect.href = 'https://videodelivery.net';
+      preconnect.crossOrigin = 'anonymous';
+      preconnect.setAttribute('data-about-video-preconnect', '2');
+      document.head.appendChild(preconnect);
+    }
+
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(preloadVideo, { timeout: 1500 });
+    } else {
+      window.setTimeout(preloadVideo, 450);
+    }
+
+    const playVideo = () => {
+      const autoplaySrc = `${baseSrc}?autoplay=true`;
+      videoFrame.setAttribute('src', autoplaySrc);
+
+      videoFrame.classList.remove('opacity-0', 'pointer-events-none');
+      videoFrame.classList.add('opacity-100', 'pointer-events-auto');
+      videoTrigger.classList.add('opacity-0', 'pointer-events-none');
+      videoTrigger.setAttribute('aria-hidden', 'true');
+      videoTrigger.disabled = true;
+      videoTrigger.dataset.played = 'true';
+    };
+
+    videoTrigger.addEventListener('click', playVideo);
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAboutVideo, { once: true });
+  } else {
+    initAboutVideo();
+  }
+
+  document.addEventListener('astro:page-load', initAboutVideo);
+</script>
