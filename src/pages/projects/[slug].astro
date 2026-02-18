@@ -65,22 +65,6 @@ if (!project) {
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
         <!-- Main Content -->
         <div class="lg:col-span-2 space-y-12">
-          <!-- Photo Gallery -->
-          <div>
-            <h2 class="heading-md mb-6">Project Gallery</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {project.images.map((image, index) => (
-                <div class="aspect-video bg-gray-200 dark:bg-gray-700 rounded-lg overflow-hidden">
-                  <img 
-                    src={image} 
-                    alt={`${project.title} - Image ${index + 1}`}
-                    class="w-full h-full object-cover"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-
           <!-- The Challenge -->
           <div>
             <h2 class="heading-md mb-4">The Challenge</h2>

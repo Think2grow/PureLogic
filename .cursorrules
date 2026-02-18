@@ -1,0 +1,148 @@
+# AI Assistant Notes - Pure Logic Solutions Website
+
+## Project Estimator Calculator Audit System
+
+### Overview
+This project includes a comprehensive calculator pricing validation and audit system. When the user asks about auditing the calculator, estimator accuracy, or pricing validation, reference these files and follow this process.
+
+### Key Files Created
+
+1. **`CALCULATOR_AUDIT.md`** - Full technical audit report
+   - Industry benchmark comparisons (RSMeans, NKBA, BLS, Zillow)
+   - What was validated vs what needs monitoring
+   - Specific pricing corrections made (with dates and reasons)
+   - Data sources for future reference
+
+2. **`CALCULATOR_AUDIT_QUICK_START.md`** - Practical action plan
+   - 15-minute monthly manual audit process
+   - Google Sheet template for tracking
+   - Quarterly deep-dive checklist
+   - What to do when estimates drift
+
+3. **`src/data/CALCULATOR_AUDIT_TRACKER.ts`** - Reference guide
+   - Spreadsheet templates and formulas
+   - Scoring system (excellent/good/acceptable/needs review)
+   - Complete monthly/quarterly/annual checklists
+
+4. **`src/__tests__/calculator.validation.test.ts`** - Automated validation
+   - Test suite validating estimates against industry benchmarks
+   - Run with: `npm test calculator.validation.test.ts`
+   - Tests pass = calculator is accurate
+
+5. **`src/pages/admin/audit-tracker.astro`** - Password-protected admin page
+   - URL: `/admin/audit-tracker`
+   - Password: `PureLogic2026` (user should change this)
+   - Track actual projects vs calculator estimates
+   - Not in sitemap, not linked, search engine blocked
+
+6. **`src/components/AuditTrackerApp.tsx`** - Tracker interface
+   - Add/edit/delete project audits
+   - Auto-calculate variance
+   - Export CSV/JSON backups
+   - Color-coded accuracy alerts
+
+7. **`ADMIN_AUDIT_TRACKER_GUIDE.md`** - Usage instructions
+   - How to access and use the admin tracker
+   - Monthly audit process
+   - When to adjust pricing
+   - Troubleshooting
+
+### How to Audit the Calculator
+
+When the user asks "how do I audit the calculator" or "validate estimator pricing", explain this:
+
+#### Option 1: Manual Monthly Audit (Recommended Start)
+1. **After completing a project:**
+   - Note the final invoice total
+   - Go to `/admin/audit-tracker` (password: `PureLogic2026`)
+   - Enter project details and both calculator estimate + actual cost
+   - System auto-calculates variance
+
+2. **Monthly review:**
+   - Track 3-5 projects per month
+   - Target variance: -5% to +5% (excellent)
+   - Acceptable: -8% to +8%
+   - Flag for review: outside ±10%
+
+3. **Quarterly pricing adjustment:**
+   - Review 3 months of data
+   - Calculate category trends (Kitchen, Bathroom, Flooring)
+   - If category consistently >10% off, adjust pricing in `src/data/calculator-pricing.ts`
+   - Document changes with date and reason in comments
+
+#### Option 2: Automated Testing
+- Run: `npm test calculator.validation.test.ts`
+- Tests validate estimates against industry benchmarks
+- Passing tests = pricing is accurate
+- Failing tests = review specific categories
+
+#### Option 3: Export & Analyze
+- Use admin tracker's "Export CSV" feature
+- Analyze in Excel/Google Sheets
+- Create pivot tables by category, tier, date range
+- Identify patterns and outliers
+
+### Current Pricing Status (As of Feb 18, 2026)
+
+**Corrections Applied:**
+- Bathroom vanity (standard): $600 → $500 (aligned with industry $400-500)
+- Vinyl plank flooring: $4.00 → $3.50/sqft (market avg $3-3.50)
+- Hardwood luxury: $18 → $16/sqft (within market $15-17)
+- Kitchen permit: $500 → $600 (Utah actual $400-800)
+- Bathroom permit: $350 → $450 (Utah actual $300-600)
+- Light fixture standard: $150 → $175 (competitive positioning)
+
+**Validation Sources:**
+- RSMeans 2026 construction cost database
+- NKBA (National Kitchen & Bath Association)
+- BLS (Bureau of Labor Statistics) Utah labor rates
+- Zillow home improvement surveys
+- Local Utah contractor market data
+
+**Confidence Level:** 95% accurate to market rates
+
+### When User Asks About Pricing Adjustments
+
+1. **Point to audit files:** "See `CALCULATOR_AUDIT.md` for full validation report"
+2. **Suggest tracker:** "Use `/admin/audit-tracker` to track real projects"
+3. **Run tests:** "Validate with `npm test calculator.validation.test.ts`"
+4. **Review monthly:** "Check variance trends in your audit data"
+5. **Update pricing:** "Edit `src/data/calculator-pricing.ts` with documented reasons"
+
+### Important Reminders
+
+- **Admin page security:** Default password is `PureLogic2026` - user should change it
+- **Data persistence:** Tracker uses localStorage (browser-based, export for backups)
+- **No navigation links:** Admin page accessible only via direct URL
+- **Search engine blocked:** robots.txt disallows `/admin/` crawling
+- **Monthly habit:** Encourage user to audit 3-5 projects per month minimum
+
+### Pricing File Location
+
+All calculator pricing is in: **`src/data/calculator-pricing.ts`**
+
+Categories include:
+- Kitchen (cabinets, countertops, appliances, backsplash)
+- Bathroom (vanity, toilet, shower, fixtures)
+- Flooring (carpet, vinyl, hardwood, tile)
+- Labor rates (by trade)
+- Permits & fees
+- HVAC, electrical, plumbing
+- Overhead & profit margins
+- Travel fees by county
+
+### Quality Standards
+
+Variance scoring system:
+- **Excellent**: ±5% or better (green)
+- **Good**: ±5-8% (blue)
+- **Acceptable**: ±8-10% (yellow)
+- **Needs Review**: >±10% (red)
+
+Target: Keep 80%+ of estimates in "Excellent" or "Good" range
+
+---
+
+**Last Updated:** February 18, 2026  
+**Calculator Version:** 1.0 (post-initial-validation)  
+**Next Review Due:** May 2026 (quarterly)

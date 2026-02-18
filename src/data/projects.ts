@@ -4,8 +4,6 @@ export interface Project {
   category: string;
   location: string;
   featured: boolean;
-  thumbnailImage: string;
-  images: string[];
   completionDate: string;
   budget: {
     min: number;
@@ -32,13 +30,6 @@ export const projects: Project[] = [
     category: "Kitchen Remodel",
     location: "Draper, UT",
     featured: true,
-    thumbnailImage: "/images/projects/draper-kitchen-thumb.jpg",
-    images: [
-      "/images/projects/draper-kitchen-1.jpg",
-      "/images/projects/draper-kitchen-2.jpg",
-      "/images/projects/draper-kitchen-3.jpg",
-      "/images/projects/draper-kitchen-before.jpg"
-    ],
     completionDate: "2025-11",
     budget: { min: 55000, max: 65000 },
     timeline: "9 weeks",
@@ -69,12 +60,6 @@ export const projects: Project[] = [
     category: "Bathroom Remodel",
     location: "South Jordan, UT",
     featured: true,
-    thumbnailImage: "/images/projects/sj-bath-thumb.jpg",
-    images: [
-      "/images/projects/sj-bath-1.jpg",
-      "/images/projects/sj-bath-2.jpg",
-      "/images/projects/sj-bath-3.jpg"
-    ],
     completionDate: "2025-09",
     budget: { min: 35000, max: 42000 },
     timeline: "6 weeks",
@@ -105,12 +90,6 @@ export const projects: Project[] = [
     category: "Home Addition",
     location: "Lehi, UT",
     featured: true,
-    thumbnailImage: "/images/projects/lehi-addition-thumb.jpg",
-    images: [
-      "/images/projects/lehi-addition-1.jpg",
-      "/images/projects/lehi-addition-2.jpg",
-      "/images/projects/lehi-addition-3.jpg"
-    ],
     completionDate: "2025-06",
     budget: { min: 145000, max: 165000 },
     timeline: "5 months",
@@ -141,11 +120,6 @@ export const projects: Project[] = [
     category: "Basement Finish",
     location: "Sandy, UT",
     featured: true,
-    thumbnailImage: "/images/projects/sandy-basement-thumb.jpg",
-    images: [
-      "/images/projects/sandy-basement-1.jpg",
-      "/images/projects/sandy-basement-2.jpg"
-    ],
     completionDate: "2025-08",
     budget: { min: 62000, max: 68000 },
     timeline: "10 weeks",
@@ -176,13 +150,6 @@ export const projects: Project[] = [
     category: "Custom Home",
     location: "Alpine, UT",
     featured: true,
-    thumbnailImage: "/images/projects/alpine-home-thumb.jpg",
-    images: [
-      "/images/projects/alpine-home-1.jpg",
-      "/images/projects/alpine-home-2.jpg",
-      "/images/projects/alpine-home-3.jpg",
-      "/images/projects/alpine-home-4.jpg"
-    ],
     completionDate: "2025-04",
     budget: { min: 850000, max: 950000 },
     timeline: "14 months",
@@ -215,11 +182,6 @@ export const projects: Project[] = [
     category: "Whole Home Remodel",
     location: "Orem, UT",
     featured: false,
-    thumbnailImage: "/images/projects/orem-remodel-thumb.jpg",
-    images: [
-      "/images/projects/orem-remodel-1.jpg",
-      "/images/projects/orem-remodel-2.jpg"
-    ],
     completionDate: "2025-07",
     budget: { min: 185000, max: 210000 },
     timeline: "4 months",

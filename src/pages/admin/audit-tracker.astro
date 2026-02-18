@@ -1,0 +1,87 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import AuditTrackerApp from '@/components/AuditTrackerApp';
+
+const ADMIN_PASSWORD = 'PureLogic2026'; // Change this to your secure password
+
+// Handle password check
+let isAuthenticated = false;
+let errorMessage = '';
+
+if (Astro.request.method === 'POST') {
+  const data = await Astro.request.formData();
+  const password = data.get('password');
+  
+  if (password === ADMIN_PASSWORD) {
+    isAuthenticated = true;
+    // In production, set a session cookie here
+  } else {
+    errorMessage = 'Incorrect password';
+  }
+}
+---
+
+<MainLayout 
+  title="Project Audit Tracker"
+  description="Internal tool - password protected"
+>
+  {!isAuthenticated ? (
+    <!-- Login Screen -->
+    <section class="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center py-12 px-4">
+      <div class="w-full max-w-md">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+          <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Audit Tracker</h1>
+          <p class="text-gray-600 dark:text-gray-400 mb-8">Internal admin tool</p>
+          
+          {errorMessage && (
+            <div class="mb-6 p-4 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded text-red-700 dark:text-red-400">
+              {errorMessage}
+            </div>
+          )}
+          
+          <form method="POST" class="space-y-6">
+            <div>
+              <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                required
+                class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-base"
+                placeholder="Enter admin password"
+              />
+            </div>
+            
+            <button
+              type="submit"
+              class="w-full px-4 py-2 bg-brand-base hover:bg-brand-base/90 text-white font-semibold rounded-lg transition-colors"
+            >
+              Access Tracker
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  ) : (
+    <!-- Tracker Dashboard -->
+    <div class="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
+      <div class="container-custom max-w-6xl">
+        <div class="mb-8">
+          <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-2">Project Audit Tracker</h1>
+          <p class="text-gray-600 dark:text-gray-400">Compare calculator estimates vs actual project costs</p>
+        </div>
+
+        <!-- Tracker Component -->
+        <AuditTrackerApp client:load />
+      </div>
+    </div>
+  )}
+</MainLayout>
+
+<style>
+  body {
+    /* Prevent layout shift */
+  }
+</style>

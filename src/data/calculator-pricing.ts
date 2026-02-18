@@ -22,8 +22,8 @@ export const PRICING_DATA = {
   // Flooring (per sq ft)
   flooring: {
     carpetBuilder: { standard: 3, premium: 5, luxury: 8 },
-    vinylPlank: { standard: 4, premium: 6, luxury: 10 },
-    hardwood: { standard: 8, premium: 12, luxury: 18 },
+    vinylPlank: { standard: 3.5, premium: 6, luxury: 10 }, // Reduced standard from $4 - industry avg $3-3.50/sqft
+    hardwood: { standard: 8, premium: 12, luxury: 16 }, // Reduced luxury from $18 to $16/sqft - within market $15-17
     engineeredHardwood: { standard: 6, premium: 10, luxury: 15 },
     tileCeramic: { standard: 5, premium: 8, luxury: 12 },
     tilePorcelain: { standard: 7, premium: 11, luxury: 16 },
@@ -46,7 +46,7 @@ export const PRICING_DATA = {
 
   // Bathroom (per unit)
   bathroom: {
-    vanity: { standard: 600, premium: 1500, luxury: 3500 },
+    vanity: { standard: 500, premium: 1500, luxury: 3500 }, // Reduced standard from $600 - aligned with industry avg ($400-500)
     toilet: { standard: 250, premium: 500, luxury: 1200 },
     showerFiberglass: 1200,
     showerTilePerSqFt: { standard: 15, premium: 25, luxury: 45 },
@@ -129,7 +129,7 @@ export const PRICING_DATA = {
   electrical: {
     standardOutlet: 75,
     gfciOutlet: 100,
-    lightFixture: { standard: 150, premium: 400, luxury: 1000 },
+    lightFixture: { standard: 175, premium: 400, luxury: 1000 }, // Increased standard from $150 - competitive with market ($150-200)
     recessedLight: 125,
     ceilingFan: 250,
     panelUpgrade: 2500,
@@ -160,8 +160,8 @@ export const PRICING_DATA = {
 
   // Permits & Inspections (per project or sq ft)
   permits: {
-    kitchenRemodel: 500,
-    bathroomRemodel: 350,
+    kitchenRemodel: 600, // Increased from $500 - Utah actual: $400-800, SLC average $600+
+    bathroomRemodel: 450, // Increased from $350 - Utah actual: $300-600
     additionPerSqFt: 0.5,
     newConstructionPerSqFt: 0.75,
     electricalPermit: 200,
